@@ -11,6 +11,7 @@ services:
     command: gunicorn blog_backend.wsgi --bind 0.0.0.0:8000
     ports:
       - "8000:8000"
+    image: backend:latest
   frontend:
     build:
       context: ./blog_frontend
@@ -18,6 +19,7 @@ services:
         API_URL: "http://127.0.0.1:8000"
     ports:
       - "3000:3000"
+    image: frontend:latest
     volumes:
       - build_folder:/frontend/build
   nginx:
